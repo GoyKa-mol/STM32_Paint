@@ -1836,6 +1836,10 @@ void StartMode(void const * argument)
   couleur = FindCouleur(180,0.5,0.5)|0xFF000000;
   char text_taille[] = "Taille du pinceau :   px";
   char text_brush[] = " <<<<            Valider            >>>>";
+  char demande_envoi[] = "d";
+  char confirmation;
+  uint32_t pixel;
+  char R,V,B;
   for(;;)
   {
 	  switch(etat)
@@ -2256,6 +2260,25 @@ void StartMode(void const * argument)
 	   * etat d'enregistrement du dessin
 	   */
 	  case 8 :
+		  HAL_UART_Transmit(&huart1, demande_envoi, 2, 100);
+		  HAL_UART_Receive(&huart1, &confirmation, 1, 250);
+		  if(confirmation=='a')
+		  {
+			  for(int i = 0; i<246; i++)
+			  {
+				  for(int j = 0; j<425;j++)
+				  {
+					  pixel = BSP_LCD_ReadPixel(j, i);
+					  R = pixel >> 16;
+					  V = pixel >> 8;
+					  B = pixel;
+					  HAL_UART_Transmit(&huart1, &R, 1, 100);
+					  HAL_UART_Transmit(&huart1, &V, 1, 100);
+					  HAL_UART_Transmit(&huart1, &B, 1, 100);
+				  }
+			  }
+			  confirmation = 'n';
+		  }
 		  etat = 1;
 		  break;
 	  }

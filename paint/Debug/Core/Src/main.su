@@ -34,8 +34,8 @@ main.c:1774:7:FindSaturation	16	static
 main.c:1779:7:modulo	24	static
 main.c:1786:7:absolu	16	static
 main.c:1800:6:StartDefaultTask	16	static
-main.c:1818:6:StartMode	304	static
-main.c:2274:6:StartPeindre	16	static
-main.c:2304:6:StartTaskEtat	40	static
-main.c:2378:6:HAL_TIM_PeriodElapsedCallback	16	static
-main.c:2395:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:1818:6:StartMode	328	static
+main.c:2297:6:StartPeindre	16	static
+main.c:2327:6:StartTaskEtat	40	static
+main.c:2401:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:2418:6:Error_Handler	4	static,ignoring_inline_asm

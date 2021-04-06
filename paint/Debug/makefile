@@ -58,8 +58,8 @@ all: main-build
 main-build: paint.elf secondary-outputs
 
 # Tool invocations
-paint.elf: $(OBJS) $(USER_OBJS) C:\Users\benji\OneDrive\Documents\GitHub\STM32_Paint\paint\STM32F746NGHX_FLASH.ld
-	arm-none-eabi-gcc -o "paint.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\benji\OneDrive\Documents\GitHub\STM32_Paint\paint\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="paint.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+paint.elf: $(OBJS) $(USER_OBJS) C:\Users\admin\Documents\GitHub\STM32_Paint\paint\STM32F746NGHX_FLASH.ld
+	arm-none-eabi-gcc -o "paint.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\admin\Documents\GitHub\STM32_Paint\paint\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="paint.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
