@@ -2260,7 +2260,7 @@ void StartMode(void const * argument)
 	   * etat d'enregistrement du dessin
 	   */
 	  case 8 :
-		  HAL_UART_Transmit(&huart1, demande_envoi, 2, 100);
+		  HAL_UART_Transmit(&huart1, demande_envoi, 1, 100);
 		  HAL_UART_Receive(&huart1, &confirmation, 1, 250);
 		  if(confirmation=='a')
 		  {
@@ -2269,9 +2269,9 @@ void StartMode(void const * argument)
 				  for(int j = 0; j<425;j++)
 				  {
 					  pixel = BSP_LCD_ReadPixel(j, i);
-					  R = pixel >> 16;
-					  V = pixel >> 8;
-					  B = pixel;
+					  R = (pixel >> 16) & 0xFF;
+					  V = (pixel >> 8) & 0xFF;
+					  B = pixel & 0xFF;
 					  HAL_UART_Transmit(&huart1, &R, 1, 100);
 					  HAL_UART_Transmit(&huart1, &V, 1, 100);
 					  HAL_UART_Transmit(&huart1, &B, 1, 100);

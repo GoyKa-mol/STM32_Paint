@@ -379,3 +379,139 @@ arm-none-eabi-size   paint.elf
   73188	   5168	  37680	 116036	  1c544	paint.elf
 Finished building: default.size.stdout
  
+14:08:00 **** Incremental Build of configuration Debug for project paint ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F746xx -DDEBUG -c -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'StartMode':
+../Core/Src/main.c:2263:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+     HAL_UART_Transmit(&huart1, demande_envoi, 2, 100);
+                                ^~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:2264:31: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive' differ in signedness [-Wpointer-sign]
+     HAL_UART_Receive(&huart1, &confirmation, 1, 250);
+                               ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1435:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:2275:35: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+        HAL_UART_Transmit(&huart1, &R, 1, 100);
+                                   ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:2276:35: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+        HAL_UART_Transmit(&huart1, &V, 1, 100);
+                                   ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:2277:35: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+        HAL_UART_Transmit(&huart1, &B, 1, 100);
+                                   ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "paint.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\admin\Documents\GitHub\STM32_Paint\paint\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="paint.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: paint.elf
+ 
+arm-none-eabi-objdump -h -S  paint.elf  > "paint.list"
+arm-none-eabi-objcopy  -O binary  paint.elf  "paint.bin"
+arm-none-eabi-size   paint.elf 
+   text	   data	    bss	    dec	    hex	filename
+  73188	   5168	  37680	 116036	  1c544	paint.elf
+Finished building: default.size.stdout
+ 
+Finished building: paint.bin
+ 
+Finished building: paint.list
+ 
+14:10:02 **** Incremental Build of configuration Debug for project paint ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F746xx -DDEBUG -c -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Drivers/CMSIS/Include -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'StartMode':
+../Core/Src/main.c:2263:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+     HAL_UART_Transmit(&huart1, demande_envoi, 1, 100);
+                                ^~~~~~~~~~~~~
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:2264:31: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive' differ in signedness [-Wpointer-sign]
+     HAL_UART_Receive(&huart1, &confirmation, 1, 250);
+                               ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1435:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:2275:35: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+        HAL_UART_Transmit(&huart1, &R, 1, 100);
+                                   ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:2276:35: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+        HAL_UART_Transmit(&huart1, &V, 1, 100);
+                                   ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:2277:35: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+        HAL_UART_Transmit(&huart1, &B, 1, 100);
+                                   ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410:0,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:21:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1434:19: note: expected 'uint8_t * {aka unsigned char *}' but argument is of type 'char *'
+ HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                   ^~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "paint.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\admin\Documents\GitHub\STM32_Paint\paint\STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="paint.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: paint.elf
+ 
+arm-none-eabi-objdump -h -S  paint.elf  > "paint.list"
+arm-none-eabi-objcopy  -O binary  paint.elf  "paint.bin"
+arm-none-eabi-size   paint.elf 
+   text	   data	    bss	    dec	    hex	filename
+  73188	   5168	  37680	 116036	  1c544	paint.elf
+Finished building: default.size.stdout
+ 
+Finished building: paint.bin
+ 
+Finished building: paint.list
+ 
