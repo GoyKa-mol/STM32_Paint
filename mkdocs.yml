@@ -1,0 +1,7 @@
+site_name: My Docs
+nav :
+    - Home : index.md
+    - About : about.md
+theme: readthedocs
+site_url: https://ajuton.gitlab.io
+site_dir: public
