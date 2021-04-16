@@ -1834,7 +1834,7 @@ void StartMode(void const * argument)
   char text_alpha[] = "Choisir la transparence : ";
   char text_couleur[] = "Tonalite  |    Saturation    | Luminosite";
   couleur = FindCouleur(180,0.5,0.5)|0xFF000000;
-  char text_taille[] = "Taille du pinceau :   px";
+  char text_taille[] = "Taille du pinceau :";
   char text_brush[] = " <<<<            Valider            >>>>";
   char demande_envoi[] = "d";
   char confirmation;
@@ -1871,6 +1871,9 @@ void StartMode(void const * argument)
 				   BSP_LCD_FillCircle(480-taille_menu/2, taille_menu/2, taille_menu/2-5);
 				   BSP_LCD_SetTextColor(couleur & 0xFF000000);
 				   BSP_LCD_FillCircle(480-taille_menu/2, 5*taille_menu/2, taille_menu/2-5);
+				   BSP_LCD_SetFont(&Font24);
+				   BSP_LCD_DisplayChar(480-taille_menu+15, 6*taille_menu/2, 49+layer);
+				   BSP_LCD_SetFont(&Font12);
 				   BSP_LCD_SelectLayer(layer);
 				   BSP_LCD_SetTextColor(couleur);
 				   xSemaphoreGive(myMutexLCDHandle);

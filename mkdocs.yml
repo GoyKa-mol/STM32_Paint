@@ -1,7 +1,12 @@
 site_name: My Docs
 nav :
-    - Home : index.md
-    - About : about.md
+    - Home : 
+        - 'Le projet' : 'index.md'
+    - 'User Guide' : 
+        - 'Partie dessin' : 'use.md'
+        - 'Partie sauvegarde' : 'save.md'
+    - Fonctionnement : 
+        - 'Fonctionnement du projet' : 'fonction.md'
 theme: readthedocs
 site_url: https://ajuton.gitlab.io
 site_dir: public

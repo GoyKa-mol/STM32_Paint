@@ -13,10 +13,18 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
 import serial.tools.list_ports
-import time
-from PIL import Image, ImageTk
 import os
 
+### - - - - - Création des fichiers si ils ont été supprimé - - - - -###
+icon = True
+if not os.path.exists('./data/favicon.ico'):
+      icon = False
+      
+if not os.path.exists('./saved_image'):
+      os.makedirs('./saved_image')
+      
+if not os.path.exists('./temp'):
+      os.makedirs('./temp')
 
 class MyApp:
     def __init__(self, parent):
@@ -95,6 +103,9 @@ class MyApp:
 
 root = tk.Tk()
 root.geometry('450x360')
+if icon == True:
+    root.iconbitmap("./data/favicon.ico")
+root.title("STM32_paint saving app")
 myApp = MyApp(root)
 root.mainloop()
     

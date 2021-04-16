@@ -50,9 +50,13 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pour-le-programme-de-dessin-sur-la-carte">Pour le programme de dessin sur la carte</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
+    <li class="toctree-l3"><a class="reference internal" href="#pour-le-programme-de-sauvegarde">Pour le programme de sauvegarde</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#contenu-du-depot">Contenu du dépôt</a>
     </li>
@@ -60,7 +64,11 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="about/">About</a>
+                    <li class="toctree-l1"><a class="reference internal" href="use/">User Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="fonction/">Fonctionnement</a>
                     </li>
                 </ul>
       </div>
@@ -98,19 +106,23 @@
                 <h1 id="projet-paint-sur-carte-stm32-discovery">Projet paint sur carte STM32 discovery</h1>
 <p>Disponible à l'adresse :
 https://github.com/GoyKa-mol/STM32_Paint.git</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre>
+<p>Le projet contient deux parties : 
++ Un programme C sur la carte STM32 permettant de dessiner dessus avec plusieurs options (couleur, choix du pinceau, etc). Ce programme est indépendant du second programme. Pour faire référence à cette fonction on parlera de <strong>dessin sur la carte</strong>
++ Un programme python pour sauvgarder le dessin réalisé sur la carte. La carte doit être en train d'éxécuter sont programme et être en liaison avec l'ordinateur pour sauvegarder le dessin. Pour faire référence à cette fonction on parlera d'<strong>application de sauvegarde</strong></p>
+<h2 id="prerequis">Prérequis</h2>
+<h3 id="pour-le-programme-de-dessin-sur-la-carte">Pour le programme de dessin sur la carte</h3>
+<p>Pour pouvoir utiliser la partie dessin du projet il faut possêder :
++ Une carte STM32F746G-DISCO
++ L'extension ENS-Paris-Saclay récente de la carte
++ STM32CubeIDE pour compiler et transmettre le programme à la carte</p>
+<h3 id="pour-le-programme-de-sauvegarde">Pour le programme de sauvegarde</h3>
+<p>Pour pouvoir utiliser la partie sauvegarde du projet il faut possêder :
++ Python 3.8 (peut être avec d'anciennes version de python 3 mais je ne l'ai pas testé)
++ les modules suivants:
+    * tkinter
+    * pyserial
+    * matplotlib.pyplot
+    * numpy</p>
 <h2 id="contenu-du-depot">Contenu du dépôt</h2>
 <p>Le dépot contient : 
 * Projet STM32CubeIDE à compiler sur la carte STM32
@@ -122,7 +134,7 @@ docs/
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="use/" class="btn btn-neutral float-right" title="User Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -150,7 +162,7 @@ docs/
       
       
       
-        <span style="margin-left: 15px"><a href="about/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="use/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -168,5 +180,5 @@ docs/
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-04-13 23:46:57.338962+00:00
+Build Date UTC : 2021-04-16 12:17:34.416122+00:00
 -->
