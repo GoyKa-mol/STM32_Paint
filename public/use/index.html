@@ -9,7 +9,7 @@
   
   <link rel="canonical" href="https://ajuton.gitlab.io/use/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>User Guide - My Docs</title>
+  <title>Partie dessin - My Docs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "User Guide";
+    var mkdocs_page_name = "Partie dessin";
     var mkdocs_page_input_path = "use.md";
     var mkdocs_page_url = "/use/";
   </script>
@@ -47,22 +47,45 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Home</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Le projet</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">User Guide</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">User Guide</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Partie dessin</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#dessiner-sur-la-carte">Dessiner sur la carte</a>
+    <li class="toctree-l2"><a class="reference internal" href="#set-up">Set Up</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#enregistrer-son-dessin">Enregistrer son dessin</a>
+    <li class="toctree-l2"><a class="reference internal" href="#dessiner-sur-la-carte">Dessiner sur la carte</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#naviguer-dans-les-menus">Naviguer dans les menus</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#choix-du-calque">Choix du calque</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#choix-du-pinceau">Choix du pinceau</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#choix-de-la-transparence">Choix de la transparence</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#choix-de-la-couleur">Choix de la couleur</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#guide-des-pinceaux">Guide des pinceaux</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tout-effacer">Tout effacer</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../save/">Partie sauvegarde</a>
+                    </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Fonctionnement</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../fonction/">Fonctionnement</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../fonction/">Fonctionnement du projet</a>
                     </li>
                 </ul>
       </div>
@@ -85,8 +108,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>User Guide &raquo;</li>
+        
+      
     
-    <li>User Guide</li>
+    <li>Partie dessin</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -98,10 +125,37 @@
             <div class="section">
               
                 <h1 id="guide-dutilisation">Guide d'utilisation</h1>
+<h2 id="set-up">Set Up</h2>
+<p>Pour pouvoir utiliser la partie dessin lancer STM32CubeIDE et ouvrez le projet contenu dans le dossier paint, compiler et envoyer ensuite le programme à la carte. Une fois ceci effectué vous pouvez commencer à utiliser la carte.</p>
 <h2 id="dessiner-sur-la-carte">Dessiner sur la carte</h2>
-<p>Expliquer comment utiliser les différents fonctions de la carte (menu, etc)</p>
-<h2 id="enregistrer-son-dessin">Enregistrer son dessin</h2>
-<p>Expliquer comment enregistrer son dessin avec l'app python</p>
+<p>Pour dessiner sur la carte utiliser l'écran tactile sur la zone de dessin (en haut à gauche). Le menu pour rêgler les différents paramêtres se trouve en bas. Enfin, on trouve à droite les indicateur des options sélectionné, soit de haut en bas :</p>
+<ul>
+<li>Couleur sélectionnée</li>
+<li>Type de pinceau</li>
+<li>valeur de la transparence (noir signifie opaque et blanc transparent)</li>
+<li>calque sélectionné (1 ou 2)</li>
+</ul>
+<p><img alt="photo LCD" src="/img/global.jpg" /></p>
+<h3 id="naviguer-dans-les-menus">Naviguer dans les menus</h3>
+<p>Le choix du premier menu se fait avec le joystick pour ne pas ouvrir un menu sans le vouloir en dépassant de la zone de dessin. Ainsi pour choisir un menu on vas à gauche ou à droite avec le joystick se qui fait se déplacer l'indicateur de sélection (violet), puis on entre dans le menu sélectionner avec un clique joystick. A partir d'ici la navigation se fait tactilement.</p>
+<h6 id="choix-du-calque">Choix du calque</h6>
+<p>Le menu calque donne le choix entre deux calque, le calque 1 est le calque du bas et el 2 celui du haut.</p>
+<h6 id="choix-du-pinceau">Choix du pinceau</h6>
+<p>Le menu pinceau permet de choisir le pinceau suivant ou précédent avec les flêches sur l'écran et de sortir de se menu avec le bouton validé au centre. Pour plus d'information concernant les logo associé à chaques pinceau voir : <a href="/use/#guide-des-pinceaux">Le guide des pinceaux</a></p>
+<h6 id="choix-de-la-transparence">Choix de la transparence</h6>
+<p>Le menu transparence permet de choisir l'alpha entre 0 et 255, pour choisir la transparence glisser son doigt sur la barre dégradé, le blanc correspnd à une transparence totale et le noir à une opacité complête. Tant que le doigt est maintenu sur l'écran on peut changer la transparence et suivre notre choix en direct dans la partie droite de l'écran, lors du relachement du doigt la transparence sélectionné est la dernière position du doigt.</p>
+<h6 id="choix-de-la-couleur">Choix de la couleur</h6>
+<p>Pour choisir la couleur il y a 3 paramêtres à configurer :</p>
+<ul>
+<li>La tonalité</li>
+<li>La saturation</li>
+<li>La luminosité</li>
+</ul>
+<p>Rentrer dans ce menu permet d'en configurer un au choix. Comme sur l'image si dessous :
+<img alt="photo LCD" src="/img/couleur.jpg" />
+Ensuite il y aura un dégradé pour choisir la valeur du paramêtre le processus de sélection es tle même que pour la transparence, et on peut toujours suivre en temps réel la valeur de notre sélection dans la partie droite de l'écran.</p>
+<h3 id="guide-des-pinceaux">Guide des pinceaux</h3>
+<h3 id="tout-effacer">Tout effacer</h3>
               
             </div>
           </div>
@@ -109,10 +163,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../fonction/" class="btn btn-neutral float-right" title="Fonctionnement">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../save/" class="btn btn-neutral float-right" title="Partie sauvegarde">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Le projet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -141,7 +195,7 @@
         <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../fonction/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../save/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

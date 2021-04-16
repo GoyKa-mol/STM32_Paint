@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
+  
   
   <link rel="canonical" href="https://ajuton.gitlab.io/">
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>My Docs</title>
+  <title>Le projet - My Docs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Home";
+    var mkdocs_page_name = "Le projet";
     var mkdocs_page_input_path = "index.md";
     var mkdocs_page_url = "/";
   </script>
@@ -47,8 +47,9 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Home</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Le projet</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a>
         <ul>
@@ -63,12 +64,16 @@
     </ul>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">User Guide</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="use/">User Guide</a>
+                    <li class="toctree-l1"><a class="reference internal" href="use/">Partie dessin</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="save/">Partie sauvegarde</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Fonctionnement</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="fonction/">Fonctionnement</a>
+                    <li class="toctree-l1"><a class="reference internal" href="fonction/">Fonctionnement du projet</a>
                     </li>
                 </ul>
       </div>
@@ -91,8 +96,12 @@
     <li><a href=".">Docs</a> &raquo;</li>
     
       
+        
+          <li>Home &raquo;</li>
+        
+      
     
-    <li>Home</li>
+    <li>Le projet</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -104,29 +113,39 @@
             <div class="section">
               
                 <h1 id="projet-paint-sur-carte-stm32-discovery">Projet paint sur carte STM32 discovery</h1>
-<p>Disponible à l'adresse :
-https://github.com/GoyKa-mol/STM32_Paint.git</p>
-<p>Le projet contient deux parties : 
-+ Un programme C sur la carte STM32 permettant de dessiner dessus avec plusieurs options (couleur, choix du pinceau, etc). Ce programme est indépendant du second programme. Pour faire référence à cette fonction on parlera de <strong>dessin sur la carte</strong>
-+ Un programme python pour sauvgarder le dessin réalisé sur la carte. La carte doit être en train d'éxécuter sont programme et être en liaison avec l'ordinateur pour sauvegarder le dessin. Pour faire référence à cette fonction on parlera d'<strong>application de sauvegarde</strong></p>
+<p>Les fichiers du projet sont disponibles à l'adresse :
+<a href="https://github.com/GoyKa-mol/STM32_Paint.git">https://github.com/GoyKa-mol/STM32_Paint.git</a></p>
+<p>Le projet contient deux parties : </p>
+<ul>
+<li>Un programme C sur la carte STM32 permettant de dessiner dessus avec plusieurs options (couleur, choix du pinceau, etc). Ce programme est indépendant du second programme. Pour faire référence à cette fonction on parlera de <strong>dessin sur la carte</strong></li>
+<li>Un programme python pour sauvgarder le dessin réalisé sur la carte. La carte doit être en train d'éxécuter sont programme et être en liaison avec l'ordinateur pour sauvegarder le dessin. Pour faire référence à cette fonction on parlera d'<strong>application de sauvegarde</strong></li>
+</ul>
 <h2 id="prerequis">Prérequis</h2>
-<h3 id="pour-le-programme-de-dessin-sur-la-carte">Pour le programme de dessin sur la carte</h3>
-<p>Pour pouvoir utiliser la partie dessin du projet il faut possêder :
-+ Une carte STM32F746G-DISCO
-+ L'extension ENS-Paris-Saclay récente de la carte
-+ STM32CubeIDE pour compiler et transmettre le programme à la carte</p>
-<h3 id="pour-le-programme-de-sauvegarde">Pour le programme de sauvegarde</h3>
-<p>Pour pouvoir utiliser la partie sauvegarde du projet il faut possêder :
-+ Python 3.8 (peut être avec d'anciennes version de python 3 mais je ne l'ai pas testé)
-+ les modules suivants:
-    * tkinter
-    * pyserial
-    * matplotlib.pyplot
-    * numpy</p>
+<h5 id="pour-le-programme-de-dessin-sur-la-carte">Pour le programme de dessin sur la carte</h5>
+<p>Pour pouvoir utiliser la partie dessin du projet il faut possêder :</p>
+<ul>
+<li>Une carte STM32F746G-DISCO.</li>
+<li>L'extension ENS-Paris-Saclay récente de la carte.</li>
+<li>STM32CubeIDE pour compiler et transmettre le programme à la carte.</li>
+</ul>
+<h5 id="pour-le-programme-de-sauvegarde">Pour le programme de sauvegarde</h5>
+<p>Pour pouvoir utiliser la partie sauvegarde du projet il faut possêder :</p>
+<ul>
+<li>Python 3.8 (peut être avec d'anciennes version de python 3 mais je ne l'ai pas testé).</li>
+<li>Les modules suivants:<ul>
+<li>tkinter</li>
+<li>pyserial</li>
+<li>matplotlib</li>
+<li>numpy</li>
+</ul>
+</li>
+</ul>
 <h2 id="contenu-du-depot">Contenu du dépôt</h2>
-<p>Le dépot contient : 
-* Projet STM32CubeIDE à compiler sur la carte STM32
-* Un script python pour l'enregistrement d'une image</p>
+<p>Les dossier du dépot nécessaire au projet sont :</p>
+<ul>
+<li>Le dossier paint pour le programme de dessin contenant le projet ST32CubeIDE.</li>
+<li>Le dossier python pour le programme de sauvegarde contenant le programme python.</li>
+</ul>
               
             </div>
           </div>
@@ -134,7 +153,7 @@ https://github.com/GoyKa-mol/STM32_Paint.git</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="use/" class="btn btn-neutral float-right" title="User Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="use/" class="btn btn-neutral float-right" title="Partie dessin">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -177,8 +196,3 @@ https://github.com/GoyKa-mol/STM32_Paint.git</p>
 
 </body>
 </html>
-
-<!--
-MkDocs version : 1.1.2
-Build Date UTC : 2021-04-16 12:17:34.416122+00:00
--->
