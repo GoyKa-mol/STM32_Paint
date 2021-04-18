@@ -70,6 +70,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#choix-de-la-couleur">Choix de la couleur</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#choix-de-rayon">Choix de rayon</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#guide-des-pinceaux">Guide des pinceaux</a>
@@ -85,7 +87,9 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Fonctionnement</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../fonction/">Fonctionnement du projet</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../fonctionuse/">Fonctionnement de la partie dessin</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../fonctionsave/">Fonctionnement de la partie sauvegarde</a>
                     </li>
                 </ul>
       </div>
@@ -124,7 +128,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="guide-dutilisation">Guide d'utilisation</h1>
+                <h1 id="guide-dutilisation-partie-dessin">Guide d'utilisation partie dessin</h1>
 <h2 id="set-up">Set Up</h2>
 <p>Pour pouvoir utiliser la partie dessin lancer STM32CubeIDE et ouvrez le projet contenu dans le dossier paint, compiler et envoyer ensuite le programme à la carte. Une fois ceci effectué vous pouvez commencer à utiliser la carte.</p>
 <h2 id="dessiner-sur-la-carte">Dessiner sur la carte</h2>
@@ -135,13 +139,13 @@
 <li>valeur de la transparence (noir signifie opaque et blanc transparent)</li>
 <li>calque sélectionné (1 ou 2)</li>
 </ul>
-<p><img alt="photo LCD" src="/img/global.jpg" /></p>
+<p><img alt="photo LCD" src="../img/global.jpg" /></p>
 <h3 id="naviguer-dans-les-menus">Naviguer dans les menus</h3>
 <p>Le choix du premier menu se fait avec le joystick pour ne pas ouvrir un menu sans le vouloir en dépassant de la zone de dessin. Ainsi pour choisir un menu on vas à gauche ou à droite avec le joystick se qui fait se déplacer l'indicateur de sélection (violet), puis on entre dans le menu sélectionner avec un clique joystick. A partir d'ici la navigation se fait tactilement.</p>
 <h6 id="choix-du-calque">Choix du calque</h6>
 <p>Le menu calque donne le choix entre deux calque, le calque 1 est le calque du bas et el 2 celui du haut.</p>
 <h6 id="choix-du-pinceau">Choix du pinceau</h6>
-<p>Le menu pinceau permet de choisir le pinceau suivant ou précédent avec les flêches sur l'écran et de sortir de se menu avec le bouton validé au centre. Pour plus d'information concernant les logo associé à chaques pinceau voir : <a href="/use/#guide-des-pinceaux">Le guide des pinceaux</a></p>
+<p>Le menu pinceau permet de choisir le pinceau suivant ou précédent avec les flêches sur l'écran et de sortir de se menu avec le bouton validé au centre. Pour plus d'information concernant les logo associé à chaques pinceau voir : <a href="/STM32_Paint/use/#guide-des-pinceaux">Le guide des pinceaux</a></p>
 <h6 id="choix-de-la-transparence">Choix de la transparence</h6>
 <p>Le menu transparence permet de choisir l'alpha entre 0 et 255, pour choisir la transparence glisser son doigt sur la barre dégradé, le blanc correspnd à une transparence totale et le noir à une opacité complête. Tant que le doigt est maintenu sur l'écran on peut changer la transparence et suivre notre choix en direct dans la partie droite de l'écran, lors du relachement du doigt la transparence sélectionné est la dernière position du doigt.</p>
 <h6 id="choix-de-la-couleur">Choix de la couleur</h6>
@@ -152,10 +156,22 @@
 <li>La luminosité</li>
 </ul>
 <p>Rentrer dans ce menu permet d'en configurer un au choix. Comme sur l'image si dessous :
-<img alt="photo LCD" src="/img/couleur.jpg" />
-Ensuite il y aura un dégradé pour choisir la valeur du paramêtre le processus de sélection es tle même que pour la transparence, et on peut toujours suivre en temps réel la valeur de notre sélection dans la partie droite de l'écran.</p>
+<img alt="photo Couleur" src="../img/couleur.jpg" />
+Ensuite il y aura un dégradé pour choisir la valeur du paramêtre le processus de sélection est le même que pour la transparence, et on peut toujours suivre en temps réel la valeur de notre sélection dans la partie droite de l'écran.</p>
+<h6 id="choix-de-rayon">Choix de rayon</h6>
+<p>Le menu rayon permet de sélectionner le rayon du pinceau de la même façon que pour la transparence il suffit de glisser son doigt pour faire la sélection.</p>
 <h3 id="guide-des-pinceaux">Guide des pinceaux</h3>
+<p>Il y a 6 pinceaux possibles :</p>
+<ul>
+<li>Un rond simple</li>
+<li>Un remplissage de la zone de dessin</li>
+<li>Un rond dégradé</li>
+<li>Un oval horizontal et vertical</li>
+<li>Une gomme</li>
+</ul>
+<p><img alt="photo pinceau" src="../img/pinceau.jpg" /></p>
 <h3 id="tout-effacer">Tout effacer</h3>
+<p>Pour effacer l'ensemble de la zone de dessin il suffit de cliquer sur le bouton BP2.</p>
               
             </div>
           </div>

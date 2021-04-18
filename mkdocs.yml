@@ -6,7 +6,8 @@ nav :
         - 'Partie dessin' : 'use.md'
         - 'Partie sauvegarde' : 'save.md'
     - Fonctionnement : 
-        - 'Fonctionnement du projet' : 'fonction.md'
+        - 'Fonctionnement de la partie dessin' : 'fonctionuse.md'
+        - 'Fonctionnement de la partie sauvegarde' : 'fonctionsave.md'
 theme: readthedocs
 site_url: https://ajuton.gitlab.io
 site_dir: public

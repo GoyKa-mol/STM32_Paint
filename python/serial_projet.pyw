@@ -33,7 +33,7 @@ class MyApp:
         self.labelChoix = tk.Label(self.myParent, text = 'veuillez choisir le port série')
         self.labelChoix.pack()
         self.listeport = [comports.description for comports in serial.tools.list_ports.comports()]
-        self.listeCombo = ttk.Combobox(self.myParent, values = self.listeport, width = max([len(x) for x in self.listeport]))
+        self.listeCombo = ttk.Combobox(self.myParent, values = self.listeport, width = 50, postcommand = self.refresh_com)
         self.listeCombo.current(0)
         self.listeCombo.pack()
         self.listeCombo.bind("<<ComboboxSelected>>", self.get_com)
@@ -54,6 +54,12 @@ class MyApp:
         self.idx = self.listeCombo.current()
         self.port_com = serial.tools.list_ports.comports()[self.idx].device
     
+    def refresh_com(self):
+        self.listeport = [comports.description for comports in serial.tools.list_ports.comports()]
+        self.listeCombo.configure(values = self.listeport)
+        self.listeCombo.update_idletasks()
+        return 0
+        
     def ready(self, event):
         ser = serial.Serial(port = self.port_com, baudrate=115200, bytesize=8, parity='N', stopbits=1)
         reception = True
