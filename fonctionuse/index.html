@@ -67,9 +67,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#les-etats-possibles">Les états possibles</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#selection-de-la-couleur">Sélection de la couleur</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#barre-de-selection">Barre de sélection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#selection-de-la-couleur">Sélection de la couleur</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#peindre">Peindre</a>
     </li>
@@ -127,12 +127,103 @@
 <li>L'état de clear de la zone de dessin se fait sur interruption.</li>
 <li>L'état de sauvegarde est également sur interruption.</li>
 </ul>
-<h2 id="selection-de-la-couleur">Sélection de la couleur</h2>
-<p>Expliquer comme on choisit la couleur, lien RGB &lt;-&gt; Ton, Sat,Lum</p>
 <h2 id="barre-de-selection">Barre de sélection</h2>
-<p>Expliquer comment est faite la barre de sélection</p>
+<p>La gestion d'un barre de sélection continu se fait en plusieurs étapes :</p>
+<ul>
+<li>Affichage de la barre(dans notre cas souvent un dégradé de couleur).</li>
+<li>On attend un appuie tactile sur la zone de la barre puis on boucle tant que le doigt est maintenu.<ul>
+<li>On lit la coordonné x sur l'écran à laquel on retire l'abcisse x du début de la barre de sélection, ce qui nous donne la distance entre le début de la barre et le doigt. On peut changer des paramètres à partir de ça.</li>
+</ul>
+</li>
+</ul>
+<p>Ainsi l'utilisateur peut voir en direct l'effet de sa sélection en direct et simplement déplacer son doigt pour changer au lieu de devoir refaire tout du début si il clique trop à droite ou à gauche.</p>
+<p>Par exemple pour le cas 4 qui correspond à la sélection de la transparence on a :</p>
+<ul>
+<li>
+<p>Affichage de la barre dégradé de transparence et d'un petit texte</p>
+<pre><code>BSP_LCD_SelectLayer(1);
+BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+BSP_LCD_FillRect(0, 251, 480, 21);
+BSP_LCD_SetTextColor(LCD_COLOR_RED);
+BSP_LCD_DisplayStringAt(0, 252,(uint8_t*) text_alpha, LEFT_MODE);
+for(uint32_t i = 0;i&lt;256; i++)
+{
+    for(char j = 0; j&lt;18; j++)
+    {
+        BSP_LCD_DrawPixel(200+i, 252+j, i &lt;&lt; 24);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>On boucle tant que l'on appuie dans la zone de la barre</p>
+<pre><code>BSP_TS_GetState(&amp;TS_State);
+while(TS_State.touchDetected)
+{
+    if((TS_State.touchX[0]&gt;200) &amp;&amp; (TS_State.touchY[0] &gt; 272-haut_menu) &amp;&amp; (TS_State.touchX[0]&lt;455))
+    {
+        //
+        // Action à faire en fonction de la position du doigt
+        //
+    }
+    sous_menu = 0;
+    BSP_TS_GetState(&amp;TS_State);
+}
+</code></pre>
+</li>
+<li>
+<p>Changement de la transparence en fonction de la position du doigt.</p>
+<pre><code>couleur &amp;= 0x00FFFFFF; //on enlève l'ancienne transparence
+couleur |= ((TS_State.touchX[0]-200)&lt;&lt;24);
+if(myMutexLCDHandle != NULL)
+{
+    if(xSemaphoreTake(myMutexLCDHandle,100) == pdTRUE)
+    {
+        BSP_LCD_SetTextColor(couleur &amp; 0xFF000000);
+        BSP_LCD_FillCircle(480-taille_menu/2, 5*taille_menu/2, taille_menu/2-5);
+        xSemaphoreGive(myMutexLCDHandle);
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="selection-de-la-couleur">Sélection de la couleur</h2>
+<p>La sélection de la couleur pourrait se faire trivialement en choisissant R, V, puis B. Cependant cette méthode est pratique d'un poit du vu informatique, mais il est difficile de choisir une courleur de cette manière pour un humain. Ainsi le système de sélection de couleur choisit est le système TSB (teinte, saturation, brillance) dont une explication détaillé est disponible dans <a href="https://fr.wikipedia.org/wiki/Teinte_saturation_luminosité">l'article wikipedia associé</a>.</p>
+<p>Ainsi, les choix de l'utilisateur nous donne une valeur de teinte (variable <em>ton</em>) entre 0° et 360°, représentant le spectre des couleurs visible. Une valeur de luminosité (variable <em>lum</em>) et de saturation (variable <em>sat</em>) entre 0 et 1. A partir de ses valeurs on utilise la fonction <strong>FindCouleur</strong> qui utilise la méthode de passage TSB vers RVB de l'article wikipedia pour obtenir un format de couleur lisible pour l'ordinateur.</p>
 <h2 id="peindre">Peindre</h2>
-<p>Expliquer comment le choix du pinceau est fait</p>
+<p>Pour peindre dans la zone de dessin on appel la fonction <strong>LCD_PAINT_BRUSH</strong> qui dessine la forme du pinceau souhaité à une position (x, y) avec un rayon rad.</p>
+<pre><code>void LCD_PAINTBRUSH(uint16_t x, uint16_t y,uint16_t rad)
+{
+    uint32_t color;
+    switch(brush)
+    {
+    case 0 :
+        BSP_LCD_FillCircle(x, y, rad);
+        break;
+    case 1 :
+        BSP_LCD_FillRect(0, 0, 425, 246);
+        break;
+    case 2 :
+        for(int i = 1; i&lt;=Radius; i++)
+        {
+            color =((255-((i-1)*255/radius))&lt;&lt;24);
+            BSP_LCD_SetTextColor(color);
+            BSP_LCD_DrawCircle(x, y, i);
+        }
+        break;
+    case 3 :
+        BSP_LCD_FillEllipse(x, y, radius, radius/2);
+        break;
+    case 4 :
+        BSP_LCD_FillEllipse(x, y, radius/2, radius);
+        break;
+    case 5 :
+        BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+        BSP_LCD_FillRect(x-radius, y-radius, 2*radius, 2*radius);
+        break;
+    }
+}
+</code></pre>
               
             </div>
           </div>
