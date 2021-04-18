@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://ajuton.gitlab.io/about/">
+  <link rel="canonical" href="https://ajuton.gitlab.io/fonctionuse/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>About - My Docs</title>
+  <title>Fonctionnement de la partie dessin - My Docs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "About";
-    var mkdocs_page_input_path = "about.md";
-    var mkdocs_page_url = "/about/";
+    var mkdocs_page_name = "Fonctionnement de la partie dessin";
+    var mkdocs_page_input_path = "fonctionuse.md";
+    var mkdocs_page_url = "/fonctionuse/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -60,8 +60,20 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Fonctionnement</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../fonctionuse/">Fonctionnement de la partie dessin</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Fonctionnement de la partie dessin</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#interaction-entre-taches">Interaction entre tâches</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#les-etats-possibles">Les états possibles</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#selection-de-la-couleur">Sélection de la couleur</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#barre-de-selection">Barre de sélection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#peindre">Peindre</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../fonctionsave/">Fonctionnement de la partie sauvegarde</a>
                     </li>
@@ -86,8 +98,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Fonctionnement &raquo;</li>
+        
+      
     
-    <li>About</li>
+    <li>Fonctionnement de la partie dessin</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -98,14 +114,38 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="about">About</h1>
-<p>test pour une deuxième page</p>
-<h2 id="sous-titre">sous titre</h2>
-<p>voilà le sous titre</p>
+                <h1 id="fonctionnement-du-projet">Fonctionnement du projet</h1>
+<h2 id="interaction-entre-taches">Interaction entre tâches</h2>
+<p>Le Diagramme d'interaction entre tâches est le suivant :
+<img alt="diagramme" src="../img/diagramme.png" /></p>
+<h2 id="les-etats-possibles">Les états possibles</h2>
+<ul>
+<li>L'état par défaut, est celui par défaut comme son nom l'indique, il ne fait rien pour ne pas ralentir le programme.</li>
+<li>L'état d'actualisation du menu affiche le menu du bas ainsi que les indicateurs à droite, après avoir modifié un paramètre on vas dans cet état pour ensuite retourner dans l'état par défaut.</li>
+<li>Les état lié au menu du bas, layer, pinceau, transparence, couleur, rayon. Ces état on tous la même structure : on a une variable sous menu valant 0 ou 1 qui permet de savoir si le sous menu a été affiché pour ne pas afficher le contenu du sous_menu plusieurs fois. On a l'architecture suivante :
+<img alt="etat" src="../img/etat.jpg" /></li>
+<li>L'état de clear de la zone de dessin se fait sur interruption.</li>
+<li>L'état de sauvegarde est également sur interruption.</li>
+</ul>
+<h2 id="selection-de-la-couleur">Sélection de la couleur</h2>
+<p>Expliquer comme on choisit la couleur, lien RGB &lt;-&gt; Ton, Sat,Lum</p>
+<h2 id="barre-de-selection">Barre de sélection</h2>
+<p>Expliquer comment est faite la barre de sélection</p>
+<h2 id="peindre">Peindre</h2>
+<p>Expliquer comment le choix du pinceau est fait</p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fonctionsave/" class="btn btn-neutral float-right" title="Fonctionnement de la partie sauvegarde">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../save/" class="btn btn-neutral" title="Partie sauvegarde"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -129,6 +169,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../save/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../fonctionsave/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

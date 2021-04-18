@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://ajuton.gitlab.io/fonctionsave/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Fonctionnement de la partie sauvegarde - My Docs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Fonctionnement de la partie sauvegarde";
+    var mkdocs_page_input_path = "fonctionsave.md";
+    var mkdocs_page_url = "/fonctionsave/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> My Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Home</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Le projet</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Guide</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../use/">Partie dessin</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../save/">Partie sauvegarde</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Fonctionnement</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../fonctionuse/">Fonctionnement de la partie dessin</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Fonctionnement de la partie sauvegarde</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#reception-de-donnee">Réception de donnée</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interface-graphique">Interface graphique</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#methodes-communes-aux-widget">méthodes communes aux widget</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#listecombo">listeCombo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#les-boutons">Les boutons</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#le-canvas">le canvas</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">My Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Fonctionnement &raquo;</li>
+        
+      
+    
+    <li>Fonctionnement de la partie sauvegarde</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="fonctionnement-du-projet">Fonctionnement du projet</h1>
+<h2 id="reception-de-donnee">Réception de donnée</h2>
+<p>La fonction s'occupant de la réception du dessin est la fonction <strong>ready</strong> qui est appelé lors d'un appui sur le bouton <em>"pret à recevoir"</em>. Cette fonction boucle en attendant un caractère 'd' de la carte, ce qui correspond à une demande de transmission. </p>
+<pre><code>if(ser.read(1)==b'd'): #demande de transmission de la carte
+</code></pre>
+<p>Après réception on envoi un message signifiant que l'on est prêt à recevoir :</p>
+<pre><code>ser.write(bytes('a', encoding='utf8')) #demande de transmission reçu, prêt à recevoir
+</code></pre>
+<p>La carte envoi ligne par ligne, de gauche à droite la valeur R puis G puis B des pixels, donc on lit le canal UART et on on rempli le tableau img représentant l'image avec le code suivant : </p>
+<pre><code>for i in range(246):
+    for j in range(425):
+        data_R = int.from_bytes(ser.read(1), byteorder='big')
+        data_V = int.from_bytes(ser.read(1), byteorder='big')
+        data_B = int.from_bytes(ser.read(1), byteorder='big')
+        self.img[i][j] = [data_R, data_V, data_B]
+</code></pre>
+<h2 id="interface-graphique">Interface graphique</h2>
+<p>L'interface graphique est faite avec tkinter et contient plusiseur widget : </p>
+<ul>
+<li>listeCombo qui est le menu déroulant pour choisir le port COM.</li>
+<li>boutton_ready qui est le bouton pour indiquer que l'on est pret à recevoir (appel <strong>ready</strong>).</li>
+<li>image_base qui est le canvas ou est afficher le visualisation de l'image et les messages informatifs.</li>
+<li>boutton_save qui est le bouton enregistrer.</li>
+<li>myParent qui est la variable réprésentant la fenêtre tkinter</li>
+</ul>
+<p>Les différentes méthodes utilisé associé à ces widgets sont :</p>
+<h6 id="methodes-communes-aux-widget">méthodes communes aux widget</h6>
+<ul>
+<li><em>widget.pack()</em> permet d'afficher le widget</li>
+<li><em>widget.bind("action", fonction)</em> permet d'appeler un <em>fonction</em> lorsqu'une <em>action</em> associé au widget est réalisé (par exemple un clique sourie).</li>
+<li><em>widget.configure(paramètres...)</em> permet de configurer les paramêtre du widget, les changment sont enregistré mais ne son pas actualisé sur l'interface graphique.</li>
+<li><em>widget.update_idletasks()</em> permet d'actualiser sur l'interface graphique le widget.</li>
+</ul>
+<h6 id="listecombo">listeCombo</h6>
+<ul>
+<li>
+<p>Création du menu déroulant :</p>
+<pre><code>self.listeCombo = ttk.Combobox(self.myParent, values = self.listeport, width = 50, postcommand = self.refresh_com)
+</code></pre>
+<ul>
+<li>values est la listede chaques éléments à afficher dans le menu </li>
+<li>width est le nombre de caractère de large du menu déroulant</li>
+<li>postcommand est une fonction appelé lorsque l'utilisateur déroule le menu. Ici on appel <em>refresh_com</em> qui cherche les port com du PC pour bien afficher le port de la carte si on branche la carte après avoir lancé le script python (ou vice-versa).</li>
+</ul>
+</li>
+<li>
+<p>Lecture/écriture de l'élement cliqué avec listeCombo.current(<em>opt</em> indice). Sans argument on lit l'indice de l'élément cliqué, si on met un indice en argument on affiche l'élément correspondant à l'indice. </p>
+</li>
+<li>
+<p>Lors de la sélection d'un élément du menu dérouland on appel la fonction <em>get_com</em> qui se charge de changer le port com associé à la liaison série.</p>
+</li>
+</ul>
+<h6 id="les-boutons">Les boutons</h6>
+<ul>
+<li>Lors d'un appuie sur boutton_ready on appel la fonction <em>ready</em> qui permet la transmission comme expliqué dans <a href="/STM32_Paint/use/#Réception-de-donnée">La partie ci-dessus</a> </li>
+<li>Lors d'un appuie sur boutton_save on appel la fonction <em>save</em> qui permet d'enregistrer l'image dans le dossier <em>saved_image</em> le nom est de la forme "capture_JJ_MM_YYYY_Hh_M_Ss.png" en fonction de la date et de l'heure d'enregistrement.</li>
+</ul>
+<h6 id="le-canvas">le canvas</h6>
+<ul>
+<li>On utilise les méthode image_base.create_XXXXXX() pour changer le contenue du canvas (texte, rectangle ou image).</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../fonctionuse/" class="btn btn-neutral" title="Fonctionnement de la partie dessin"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../fonctionuse/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
