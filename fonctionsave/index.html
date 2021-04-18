@@ -135,7 +135,7 @@
         self.img[i][j] = [data_R, data_V, data_B]
 </code></pre>
 <h2 id="interface-graphique">Interface graphique</h2>
-<p>L'interface graphique est faite avec tkinter et contient plusiseur widget : </p>
+<p>L'interface graphique est faite avec tkinter et contient plusieur widget : </p>
 <ul>
 <li>listeCombo qui est le menu déroulant pour choisir le port COM.</li>
 <li>boutton_ready qui est le bouton pour indiquer que l'on est pret à recevoir (appel <strong>ready</strong>).</li>
@@ -158,7 +158,7 @@
 <pre><code>self.listeCombo = ttk.Combobox(self.myParent, values = self.listeport, width = 50, postcommand = self.refresh_com)
 </code></pre>
 <ul>
-<li>values est la listede chaques éléments à afficher dans le menu </li>
+<li>values est la liste de chaques éléments à afficher dans le menu </li>
 <li>width est le nombre de caractère de large du menu déroulant</li>
 <li>postcommand est une fonction appelé lorsque l'utilisateur déroule le menu. Ici on appel <em>refresh_com</em> qui cherche les port com du PC pour bien afficher le port de la carte si on branche la carte après avoir lancé le script python (ou vice-versa).</li>
 </ul>
@@ -172,7 +172,7 @@
 </ul>
 <h6 id="les-boutons">Les boutons</h6>
 <ul>
-<li>Lors d'un appuie sur boutton_ready on appel la fonction <em>ready</em> qui permet la transmission comme expliqué dans <a href="/STM32_Paint/use/#Réception-de-donnée">La partie ci-dessus</a> </li>
+<li>Lors d'un appuie sur boutton_ready on appel la fonction <em>ready</em> qui permet la transmission comme expliqué dans <a href="/STM32_Paint/fonctionsave/#Réception-de-donnée">La partie ci-dessus</a> </li>
 <li>Lors d'un appuie sur boutton_save on appel la fonction <em>save</em> qui permet d'enregistrer l'image dans le dossier <em>saved_image</em> le nom est de la forme "capture_JJ_MM_YYYY_Hh_M_Ss.png" en fonction de la date et de l'heure d'enregistrement.</li>
 </ul>
 <h6 id="le-canvas">le canvas</h6>
