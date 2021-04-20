@@ -13,10 +13,18 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
 import serial.tools.list_ports
-import time
-from PIL import Image, ImageTk
 import os
 
+### - - - - - Création des fichiers si ils ont été supprimé - - - - -###
+icon = True
+if not os.path.exists('./data/favicon.ico'):
+      icon = False
+      
+if not os.path.exists('./saved_image'):
+      os.makedirs('./saved_image')
+      
+if not os.path.exists('./temp'):
+      os.makedirs('./temp')
 
 class MyApp:
     def __init__(self, parent):
@@ -25,7 +33,7 @@ class MyApp:
         self.labelChoix = tk.Label(self.myParent, text = 'veuillez choisir le port série')
         self.labelChoix.pack()
         self.listeport = [comports.description for comports in serial.tools.list_ports.comports()]
-        self.listeCombo = ttk.Combobox(self.myParent, values = self.listeport, width = max([len(x) for x in self.listeport]))
+        self.listeCombo = ttk.Combobox(self.myParent, values = self.listeport, width = 50, postcommand = self.refresh_com)
         self.listeCombo.current(0)
         self.listeCombo.pack()
         self.listeCombo.bind("<<ComboboxSelected>>", self.get_com)
@@ -46,6 +54,12 @@ class MyApp:
         self.idx = self.listeCombo.current()
         self.port_com = serial.tools.list_ports.comports()[self.idx].device
     
+    def refresh_com(self):
+        self.listeport = [comports.description for comports in serial.tools.list_ports.comports()]
+        self.listeCombo.configure(values = self.listeport)
+        self.listeCombo.update_idletasks()
+        return 0
+        
     def ready(self, event):
         ser = serial.Serial(port = self.port_com, baudrate=115200, bytesize=8, parity='N', stopbits=1)
         reception = True
@@ -91,9 +105,13 @@ class MyApp:
         self.boutton_save.configure(state = 'disabled')
         self.boutton_save.unbind("<Button-1>")
         self.boutton_save.update_idletasks()
-    
+
+
 root = tk.Tk()
 root.geometry('450x360')
+if icon == True:
+    root.iconbitmap("./data/favicon.ico")
+root.title("STM32_paint saving app")
 myApp = MyApp(root)
 root.mainloop()
     
